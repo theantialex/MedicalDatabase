@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Patient appointment history</h1>
+</div>
+
+<div class="container">
+	<div class="row">
+      <p>Select patient:</p>
+	    <form class="col-md-4" action="/app_history" method="get">
+			{% csrf_token %}
+	        <select class="form-control select2" name="select_opt">
+              {% for patient in patients %}
+	           <option>{{ patient.name }}</option>
+              {% endfor %}
+	        </select>
+			<p><br>
+          <button type="submit">Confirm</button>
+			</p>
+	    </form>
+ 	</div>
+</div>
+<script>
+    $('.select2').select2();
+</script>
+{% endblock content %}
