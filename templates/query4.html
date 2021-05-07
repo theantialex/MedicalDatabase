@@ -13,11 +13,7 @@
       <p>Select patient:</p>
 	    <form class="col-md-4" action="/treat_history" method="get">
 			{% csrf_token %}
-	        <select class="form-control select2" name="select_opt">
-              {% for patient in patients %}
-	           <option>{{ patient.name }}</option>
-              {% endfor %}
-	        </select>
+            <input type="text" class="form-control select2" name="select_opt">
 			<p><br>
           <button type="submit">Confirm</button>
 			</p>

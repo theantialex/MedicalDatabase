@@ -55,7 +55,7 @@ class Patient(models.Model):
 class Appointment(models.Model):
     employee = models.ForeignKey('Employee', related_name='appointments', on_delete=models.CASCADE)
     patient = models.ForeignKey('Patient', related_name='appointments', on_delete=models.CASCADE)
-    start_time = models.DateTimeField()
+    start_time = models.DateTimeField(db_index=True)
     end_time = models.DateTimeField()
     total_cost = models.IntegerField(default=0)
     objects = AppointmentManager()
