@@ -76,7 +76,7 @@ class Medication(models.Model):
 
 
 class Procedure(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     cost = models.IntegerField()
 
     def __str__(self):
