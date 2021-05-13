@@ -343,7 +343,7 @@ class Command(BaseCommand):
         if options['db_size'] == 'large':
             sizes = [10000, 70000, 1000001, 65000, 45000]
         elif options['db_size'] == 'medium':
-            sizes = [5000, 25000, 50000, 30000, 20000]
+            sizes = [5000, 25000, 50000,30000, 20000]
         else:
             sizes = [10, 25, 45, 25, 20]
 

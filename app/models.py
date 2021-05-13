@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Sum, Count
 
 
+
 class PatientManager(models.Manager):
     def by_money(self):
         return self.prefetch_related('appointments').annotate(money=Sum('appointments__total_cost')).order_by('-money')
@@ -84,9 +85,9 @@ class Procedure(models.Model):
 
 
 class Prescription(models.Model):
-    appointment = models.ForeignKey('Appointment', related_name='prescriptions',on_delete=models.CASCADE)
-    medication = models.ForeignKey('Medication', related_name='prescriptions', on_delete=models.CASCADE)
-    amount = models.IntegerField()
+    appointment = models.ForeignKey('Appointment', related_name='prescriptions',on_delete=models.CASCADE, db_index=True)
+    medication = models.ForeignKey('Medication', related_name='prescriptions', on_delete=models.CASCADE, db_index=True)
+    amount = models.IntegerField(db_index=True)
 
     def __str__(self):
         return str(self.amount) + ' ' + self.medication.name

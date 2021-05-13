@@ -49,6 +49,7 @@ def query4(request):
 
 def query5(request):
     rows_list = Medication.objects.by_prescription()
+    print(Medication.objects.by_prescription().query)
     return render(request, 'query5.html', {'rows': rows_list})
 
 
@@ -59,7 +60,7 @@ def report1(request):
     for i in range(10):
         years.append(year)
         year -= 1
-
+    years.reverse()
     for year in years:
         count = Appointment.objects.filter(start_time__year=year).values('total_cost').aggregate(sum=Sum('total_cost'))
         values.append([str(year), count.get("sum")])
